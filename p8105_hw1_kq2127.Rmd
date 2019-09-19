@@ -74,3 +74,10 @@ p2_df = tibble(
 The size of the dataset is `r nrow(p2_df)` rows and `r ncol(p2_df)` columns. The mean of x is `r mean(pull(p2_df, x))`, the median is `r median(pull(p2_df, x))`, and the standard deviation of x is `r sd(pull(p2_df, x))`. The proportion of cases for which x + y > 1 is
 
 
+```{r yx_scatter}
+ggplot(p2_df, aes(x = x, y = y)) + geom_point(color = "red")
+```
+```
+
+
+
