@@ -30,7 +30,7 @@ mean(pull(p1_df, vec_char))
 mean(pull(p1_df, vec_factor))
 ```
 
-When I take the mean of the first two variables in my data frame I get a result. The mean variable sample is `r mean(pull(p1_df, sample))` and the mean of variable gr_th_0 is `r mean(pull(p1_df, gr_th_0))` . I was not able to take the mean of the last two variables, vec_char and vec_factor because these two variables are not numeric or logical. 
+When I take the mean of the first two variables in my data frame I get a result. The mean of the variable sample is `r mean(pull(p1_df, sample))` and the mean of variable gr_th_0 is `r mean(pull(p1_df, gr_th_0))` . I was not able to take the mean of the last two variables, vec_char and vec_factor because these two variables are not numeric or logical. 
 
 ```{r converting variables, eval = FALSE}
 as.numeric(pull(p1_df, gr_th_0))
@@ -40,7 +40,7 @@ as.numeric(pull(p1_df, vec_char))
 as.numeric(pull(p1_df, vec_factor))
 
 ```
-When I convert the logical, character, and factor variables, only the logical variable is converted into 0s and 1s. The character variable is converted into NAs and the factor variable is converted into ... . This explains why we were able to take the mean of the logical variable, but not the mean of the character or factor variables. We can take a mean of a variable with numeric values of 0s and 1s, but not of NAs. 
+When I convert the logical, character, and factor variables into numeric, the values of the logical variable are converted into 0s and 1s, the values of the factor variable are converted into 1s, 2s, and 3s and the values of the character variable are converted into NAs. Logical variables are stored as 0 and 1 on the back end, so it makes sense that they can be converted into numeric easily. There is no way to store the character variable into numeric, which is why NA was set for all the values of the converted character variable. The factor variable assigns levels, which is why it can convert into numeric values of 1s, 2s, and 3s, but these values do not mean anything and only represent differing categories/levels. This helps explain why we can take the mean of the logical variable, but not of the character or factor variables. 
 
 ```{r}
 gr_th_0_num = as.numeric(pull(p1_df, gr_th_0))
@@ -72,7 +72,7 @@ p2_df = tibble(
 )
 
 ```
-The size of the dataset is `r nrow(p2_df)` rows and `r ncol(p2_df)` columns. The mean of x is `r mean(pull(p2_df, x))`, the median is `r median(pull(p2_df, x))`, and the standard deviation of x is `r sd(pull(p2_df, x))`. The proportion of cases for which x + y > 1 is
+The size of the dataset is `r nrow(p2_df)` rows and `r ncol(p2_df)` columns. The mean of x is `r mean(pull(p2_df, x))`, the median of x is `r median(pull(p2_df, x))`, and the standard deviation of x is `r sd(pull(p2_df, x))`. The proportion of cases for which x + y > 1 is `r sum(pull(p2_df,gr_th_1))/500`.
 
 
 ```{r yx_scatter}
@@ -94,5 +94,4 @@ xy_plot_f
 ggsave("xy_plot.png")
 
 ```
-```
-The color scale of the xy plot colored by the logical vector demonstrates 
+The color scale of the xy plot colored by the logical vector demonstrates only two color options because the logical vector has two options: true or false. The color scale of the xy plot colored by the numeric vector demonstrates a spectrum of light blue to dark blue, but because the values for the numeric vector are only 0 and 1, we only see two colors and not a spectrum reflected on the plot. The color scale of the xy plot colored by the factor vector demonstrates only two color options because the factor vector has two levels of True and False.   
