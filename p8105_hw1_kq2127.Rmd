@@ -75,9 +75,10 @@ The size of the dataset is `r nrow(p2_df)` rows and `r ncol(p2_df)` columns. The
 
 
 ```{r yx_scatter}
-ggplot(p2_df, aes(x = x, y = y)) + geom_point(color = "red")
+xy_plot = ggplot(p2_df, aes(x = x, y = y)) + geom_point(color = "red")
 
-ggsave("p2_df.png")
+ggsave("xy_plot.png")
+
 ```
 ```
 
