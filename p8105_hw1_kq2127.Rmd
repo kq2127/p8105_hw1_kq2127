@@ -60,3 +60,17 @@ vec_factor_num = as.numeric(pull(p1_df, vec_factor))
 vec_factor_num*(pull(p1_df, vec_factor))
 ```
 
+# Problem 2
+
+```{r}
+p2_df = tibble(
+  x = rnorm(500),
+  y = rnorm(500),
+  gr_th_1 = x + y > 1,
+  num_vec = as.numeric(gr_th_1)
+)
+
+```
+The size of the dataset is `r nrow(p2_df)` rows and `r ncol(p2_df)` columns. The mean of x is `r mean(pull(p2_df, x))`, the median is `r median(pull(p2_df, x))`, and the standard deviation of x is `r sd(pull(p2_df, x))`. The proportion of cases for which x + y > 1 is
+
+
