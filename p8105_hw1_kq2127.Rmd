@@ -49,15 +49,15 @@ gr_th_0_num*(pull(p1_df, sample))
 
 
 
-vec_char_num = as.numeric(pull(p1_df, vec_char))
+gr_th_0_fac = as.factor(pull(p1_df, gr_th_0))
 
-##vec_char_num*(pull(p1_df, vec_char))##
+gr_th_0_fac*(pull(p1_df, sample))
 
 
 
-vec_factor_num = as.numeric(pull(p1_df, vec_factor))
+gr_th_0_fac_num = as.numeric(as.factor(pull(p1_df, gr_th_0)))
 
-vec_factor_num*(pull(p1_df, vec_factor))
+gr_th_0_fac_num*(pull(p1_df, sample))
 ```
 
 # Problem 2
@@ -67,7 +67,8 @@ p2_df = tibble(
   x = rnorm(500),
   y = rnorm(500),
   gr_th_1 = x + y > 1,
-  num_vec = as.numeric(gr_th_1)
+  num_vec = as.numeric(gr_th_1), 
+  fac_vec = as.factor(gr_th_1)
 )
 
 ```
@@ -75,12 +76,23 @@ The size of the dataset is `r nrow(p2_df)` rows and `r ncol(p2_df)` columns. The
 
 
 ```{r yx_scatter}
-xy_plot = ggplot(p2_df, aes(x = x, y = y)) + geom_point(color = "red")
+xy_plot_l = ggplot(p2_df, aes(x = x, y = y, color = gr_th_1)) + geom_point()
+
+xy_plot_l
+
+
+xy_plot_n = ggplot(p2_df, aes(x = x, y = y, color = num_vec)) + geom_point()
+
+xy_plot_n
+
+
+xy_plot_f = ggplot(p2_df, aes(x = x, y = y, color = fac_vec)) + geom_point()
+
+xy_plot_f
+
 
 ggsave("xy_plot.png")
 
 ```
 ```
-
-
-
+The color scale of the xy plot colored by the logical vector demonstrates 
